@@ -17,3 +17,17 @@ class EmployeeSerializer(serializers.Serializer):
         instance.city=validated_data.get('city',instance.city)
         instance.save()
         return instance
+    
+    def validate_roll(self, value):
+        if value>=200:
+            return serializers.ValidationError('Seat Full')
+        return value
+    
+    #object Level Validation
+
+    def validate(self,data):
+        nm=data.get('name')
+        ct=data.get('city')
+        if nm.lower()=='neeraj' and ct.lower() !='abp':
+            raise serializers.ValidationError('City must be abp')
+        return data
