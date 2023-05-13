@@ -20,5 +20,6 @@ from api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('empapi/',views.emp_api)
+    # path('empapi/',views.emp_api),
+    path('empapi/',views.EmployeeAPI.as_view())
 ]
